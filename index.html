@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>アプリ企画力・アイデア創出力向上の科学的エビデンス調査</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-paper: #F7F5F0;
+      --bg-card: #FFFFFF;
+      --bg-tinted: #EFECE4;
+      --bg-subtle: #F2EFE8;
+      --ink-primary: #171A1F;
+      --ink-secondary: #3E4550;
+      --ink-muted: #67707D;
+      --border-hairline: #DEDAD0;
+      --border-strong: #C6C0B2;
+
+      /* Purposeful Editorial Accent Palette */
+      --teal-deep: #0E5A4E;
+      --teal-mid: #16796A;
+      --teal-soft: #E6F2EF;
+      --teal-border: #B3D9D1;
+
+      --vermilion-deep: #A93221;
+      --vermilion-mid: #C84532;
+      --vermilion-soft: #FBECE9;
+      --vermilion-border: #EBBDB6;
+
+      --ochre-deep: #966513;
+      --ochre-mid: #BE841E;
+      --ochre-soft: #FBF4E4;
+      --ochre-border: #E8D2A4;
+
+      --slate-deep: #39485C;
+      --slate-soft: #EDF1F6;
+      --slate-border: #CBD5E1;
+
+      --font-serif: 'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif;
+      --font-sans: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, SFMono-Regular, monospace;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-card: 0 1px 2px rgba(23, 26, 31, 0.04), 0 8px 24px -12px rgba(23, 26, 31, 0.08);
+      --shadow-hover: 0 4px 12px rgba(23, 26, 31, 0.06), 0 14px 32px -14px rgba(23, 26, 31, 0.14);
+      --max-w: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink-primary);
+      background-color: var(--bg-paper);
+      background-image:
+        radial-gradient(rgba(14, 90, 78, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(247, 245, 240, 0) 320px);
+      background-size: 28px 28px, 100% 100%;
+      font-family: var(--font-sans);
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Typography utilities */
+    .stat {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: 4px;
+      padding: 0.08em 0.42em;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .stat i {
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .stat-pos {
+      background: var(--teal-soft);
+      border-color: var(--teal-border);
+      color: var(--teal-deep);
+    }
+
+    .stat-neg {
+      background: var(--vermilion-soft);
+      border-color: var(--vermilion-border);
+      color: var(--vermilion-deep);
+    }
+
+    .stat-warn {
+      background: var(--ochre-soft);
+      border-color: var(--ochre-border);
+      color: var(--ochre-deep);
+    }
+
+    /* Sticky Top Navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(247, 245, 240, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .topbar-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0.72rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--ink-primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: var(--teal-deep);
+      box-shadow: 4px 4px 0 var(--ochre-mid);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--teal-deep);
+      color: #FFFFFF;
+    }
+
+    .nav-num {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      opacity: 0.75;
+      margin-right: 0.25rem;
+    }
+
+    /* Main Container */
+    .page-shell {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* Editorial Masthead / Hero */
+    .hero {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-top: 4px solid var(--teal-deep);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 3rem 2.35rem;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.55s ease both;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle at top right, rgba(14, 90, 78, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      background: var(--teal-soft);
+      border: 1px solid var(--teal-border);
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      margin: 0 0 1.2rem;
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 2.75vw, 2.38rem);
+      font-weight: 800;
+      line-height: 1.32;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      margin: 0 0 2rem;
+      font-size: 1.03rem;
+      line-height: 1.88;
+      color: var(--ink-secondary);
+      max-width: 78ch;
+    }
+
+    .hero-lead strong {
+      color: var(--ink-primary);
+      background: linear-gradient(transparent 68%, rgba(190, 132, 30, 0.24) 68%);
+      font-weight: 700;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .kpi-item {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+    }
+
+    .kpi-label {
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .kpi-value.teal { color: var(--teal-deep); }
+    .kpi-value.vermilion { color: var(--vermilion-deep); }
+    .kpi-value.ochre { color: var(--ochre-deep); }
+
+    .kpi-sub {
+      font-size: 0.76rem;
+      color: var(--ink-secondary);
+      margin-top: 0.3rem;
+      line-height: 1.45;
+    }
+
+    /* Section Header Pattern */
+    section.report-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 4.8rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--ink-primary);
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--ink-primary);
+      padding: 0.16rem 0.58rem;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .section-head.caution {
+      border-bottom-color: var(--vermilion-deep);
+    }
+
+    .section-head.caution .section-num {
+      background: var(--vermilion-deep);
+    }
+
+    .section-head.ranking {
+      border-bottom-color: var(--teal-deep);
+    }
+
+    .section-head.ranking .section-num {
+      background: var(--teal-deep);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.32rem, 2.2vw, 1.72rem);
+      font-weight: 700;
+      line-height: 1.38;
+      letter-spacing: -0.01em;
+    }
+
+    .section-intro {
+      margin: 0 0 1.5rem;
+      font-size: 0.99rem;
+      color: var(--ink-secondary);
+      max-width: 84ch;
+    }
+
+    .section-intro strong {
+      color: var(--ink-primary);
+    }
+
+    /* Section 1: Contrast Grid + Conceptual Diagram */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .contrast-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 1.55rem 1.7rem;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .contrast-card.limit {
+      border-top: 4px solid var(--ochre-mid);
+    }
+
+    .contrast-card.practical {
+      border-top: 4px solid var(--teal-deep);
+    }
+
+    .card-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+      display: inline-block;
+    }
+
+    .contrast-card.limit .card-kicker { color: var(--ochre-deep); }
+    .contrast-card.practical .card-kicker { color: var(--teal-deep); }
+
+    .contrast-card h3 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.16rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .contrast-card p {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--ink-secondary);
+      line-height: 1.82;
+    }
+
+    .concept-flow {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .flow-node {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+    }
+
+    .flow-node.highlight {
+      background: var(--teal-soft);
+      border-color: var(--teal-border);
+    }
+
+    .flow-node.gap {
+      background: var(--ochre-soft);
+      border-color: var(--ochre-border);
+    }
+
+    .flow-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .flow-desc {
+      font-size: 0.78rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .flow-arrow {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Section 2: Effect-Size Visual Bar Chart + Interactive Table */
+    .chart-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1.8rem 1.35rem;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 1.65rem;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.15rem;
+    }
+
+    .chart-header h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.76rem;
+      color: var(--ink-secondary);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-swatch {
+      width: 11px;
+      height: 11px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .effect-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 0.56rem;
+    }
+
+    .effect-row {
+      display: grid;
+      grid-template-columns: 310px 1fr 168px;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    .effect-label {
+      color: var(--ink-secondary);
+      font-weight: 500;
+      text-align: right;
+      line-height: 1.35;
+    }
+
+    .effect-track {
+      position: relative;
+      height: 22px;
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* Zero axis at 43% (range -1.0 to +1.3 -> 1.0 / 2.3 = 43.48%) */
+    .zero-line {
+      position: absolute;
+      left: 43.48%;
+      top: 0;
+      bottom: 0;
+      width: 1.5px;
+      background: var(--ink-primary);
+      opacity: 0.45;
+      z-index: 2;
+    }
+
+    .effect-bar {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      border-radius: 3px;
+      z-index: 1;
+    }
+
+    .bar-pos { background: var(--teal-mid); }
+    .bar-mid { background: var(--ochre-mid); }
+    .bar-null { background: #94A3B8; }
+    .bar-neg { background: var(--vermilion-mid); }
+
+    .effect-val {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-primary);
+    }
+
+    .effect-val.neg { color: var(--vermilion-deep); }
+    .effect-val.null { color: var(--ink-muted); }
+
+    .effect-axis {
+      display: grid;
+      grid-template-columns: 310px 1fr 168px;
+      gap: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .axis-ticks {
+      position: relative;
+      height: 18px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+    }
+
+    .axis-ticks span {
+      position: absolute;
+      transform: translateX(-50%);
+      top: 0;
+    }
+
+    .chart-footnote {
+      margin: 1rem 0 0;
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border-hairline);
+    }
+
+    /* Table Controls */
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.9rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--teal-deep);
+      color: var(--teal-deep);
+    }
+
+    .filter-btn.active {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #FFFFFF;
+    }
+
+      .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 0.35rem 0.95rem;
+      min-width: 280px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--ink-primary);
+      width: 100%;
+    }
+
+    .table-count {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    /* Main Comparison Table */
+    .table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+    }
+
+    table.evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1040px;
+      font-size: 0.86rem;
+      line-height: 1.66;
+    }
+
+    table.evidence-table thead th {
+      background: #1C232B;
+      color: #F7F5F0;
+      font-weight: 600;
+      font-size: 0.79rem;
+      letter-spacing: 0.02em;
+      text-align: left;
+      padding: 0.92rem 0.9rem;
+      border-bottom: 2px solid var(--teal-mid);
+      vertical-align: bottom;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    table.evidence-table tbody tr {
+      border-bottom: 1px solid var(--border-hairline);
+      transition: background-color 0.15s ease;
+    }
+
+    table.evidence-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    table.evidence-table tbody tr:hover {
+      background-color: #FAF9F5;
+    }
+
+    table.evidence-table tbody tr.row-caution {
+      background-color: rgba(251, 236, 233, 0.35);
+    }
+
+    table.evidence-table tbody tr.row-caution:hover {
+      background-color: rgba(251, 236, 233, 0.65);
+    }
+
+    table.evidence-table td {
+      padding: 1.05rem 0.9rem;
+      vertical-align: top;
+      color: var(--ink-secondary);
+    }
+
+    table.evidence-table td:first-child {
+      color: var(--ink-primary);
+      font-weight: 700;
+      min-width: 155px;
+    }
+
+    .col-method { min-width: 155px; }
+    .col-effect { min-width: 215px; }
+    .col-strength { min-width: 148px; }
+    .col-sample { min-width: 145px; }
+    .col-apply { min-width: 225px; }
+    .col-cite { min-width: 135px; font-size: 0.8rem; color: var(--ink-muted); }
+
+    table.evidence-table td strong {
+      color: var(--ink-primary);
+    }
+
+    /* Evidence Badges */
+    .badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.58rem;
+      border-radius: 4px;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .badge-top {
+      background: var(--teal-deep);
+      color: #FFFFFF;
+    }
+
+    .badge-strong {
+      background: var(--teal-soft);
+      color: var(--teal-deep);
+      border: 1px solid var(--teal-border);
+    }
+
+    .badge-midstrong {
+      background: #EBF4F2;
+      color: #1A5C52;
+      border: 1px solid #BBDAD4;
+    }
+
+    .badge-mid {
+      background: var(--ochre-soft);
+      color: var(--ochre-deep);
+      border: 1px solid var(--ochre-border);
+    }
+
+    .badge-limited {
+      background: var(--slate-soft);
+      color: var(--slate-deep);
+      border: 1px solid var(--slate-border);
+    }
+
+    .badge-none {
+      background: var(--vermilion-soft);
+      color: var(--vermilion-deep);
+      border: 1px solid var(--vermilion-border);
+    }
+
+    .badge-detail {
+      display: block;
+      font-size: 0.79rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    /* Section 3: Unproven / Debunked Cards */
+    .caution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .caution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--vermilion-border);
+      border-left: 5px solid var(--vermilion-deep);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.55rem;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .caution-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--vermilion-deep);
+      background: var(--vermilion-soft);
+      padding: 0.22rem 0.6rem;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .caution-card h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--ink-primary);
+    }
+
+    .caution-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      line-height: 1.78;
+    }
+
+    .caution-card p strong {
+      color: var(--vermilion-deep);
+    }
+
+    /* Section 4: Top 5 Action Ranking */
+    .ranking-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .rank-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .rank-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .rank-card.rank-1 {
+      border-left: 5px solid var(--teal-deep);
+      background: linear-gradient(135deg, #FFFFFF 0%, #F7FBF9 100%);
+    }
+
+    .rank-card.rank-2 {
+      border-left: 5px solid var(--teal-mid);
+    }
+
+    .rank-card.rank-3 {
+      border-left: 5px solid var(--ochre-mid);
+    }
+
+    .rank-card.rank-4,
+    .rank-card.rank-5 {
+      border-left: 5px solid var(--slate-deep);
+    }
+
+    .rank-medal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+
+    .rank-1 .rank-medal {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #FFFFFF;
+    }
+
+    .rank-emoji {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .rank-num-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .rank-body h3 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.24rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink-primary);
+    }
+
+    .rank-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .meta-box {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      line-height: 1.65;
+    }
+
+    .meta-box-title {
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--teal-deep);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .actions-box {
+      background: #FDFCFA;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+    }
+
+    .actions-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 0.55rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .actions-title::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-deep);
+    }
+
+    .actions-list {
+      margin: 0;
+      padding-left: 1.35rem;
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+      line-height: 1.76;
+    }
+
+    .actions-list li + li {
+      margin-top: 0.48rem;
+    }
+
+    .actions-list strong {
+      color: var(--ink-primary);
+    }
+
+    /* Footer */
+    footer.report-footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-strong);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    .print-btn {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 0.42rem 0.95rem;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .print-btn:hover {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 980px) {
+      .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contrast-grid { grid-template-columns: 1fr; }
+      .concept-flow { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); }
+      .caution-grid { grid-template-columns: 1fr; }
+      .effect-row { grid-template-columns: 185px 1fr 150px; }
+      .effect-axis { grid-template-columns: 185px 1fr 150px; }
+      .rank-meta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { padding: 1.8rem 1.35rem 1.65rem; }
+      .page-shell { padding: 1.4rem 1rem 3.5rem; }
+      .rank-card { grid-template-columns: 1fr; padding: 1.35rem; }
+      .rank-medal { flex-direction: row; gap: 0.65rem; justify-self: start; padding: 0.45rem 0.85rem; }
+      .rank-emoji { margin-bottom: 0; font-size: 1.2rem; }
+      .effect-row { grid-template-columns: 1fr; gap: 0.25rem; }
+      .effect-axis { display: none; }
+      .effect-label { text-align: left; }
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body { background: #FFFFFF; }
+      .topbar, .table-toolbar, .print-btn { display: none !important; }
+      .page-shell { max-width: 100%; padding: 0; }
+      .hero, .contrast-card, .chart-panel, .table-wrap, .caution-card, .rank-card {
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      table.evidence-table { min-width: 0; font-size: 0.76rem; }
+      table.evidence-table tbody tr { display: table-row !important; }
+      table.evidence-table thead th { position: static; background: #1C232B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand-mark">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>アプリ企画力・アイデア創出力 科学的エビデンス調査</span>
+      </a>
+      <nav class="nav-links" aria-label="セクション移動">
+        <a href="#sec-distinction"><span class="nav-num">01</span>発散と収束の区別</a>
+        <a href="#sec-table"><span class="nav-num">02</span>介入手法比較表</a>
+        <a href="#sec-unproven"><span class="nav-num">03</span>効果不明確・否定介入</a>
+        <a href="#sec-ranking"><span class="nav-num">04</span>推奨ランキング Top 5</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell">
+
+    <!-- Editorial Masthead -->
+    <section class="hero" aria-label="調査概要">
+      <div class="hero-eyebrow">Evidence Synthesis Report · 146 Academic Sources</div>
+      <h1>アプリ企画力・アイデア創出力向上の科学的エビデンス調査</h1>
+      <p class="hero-lead">
+        ノートブックに収録された<strong>146件の文献（メタ分析・システマティックレビュー・大規模RCT等）</strong>に基づき、
+        <strong>健康な成人（18歳以上）におけるアプリ・ソフトウェアの企画力・アイデア創出力（発散的思考、収束的思考、および事業・プロダクトとしての実行可能性・収益性）を向上させる介入手法</strong>を整理・評価します。
+      </p>
+
+      <div class="kpi-strip">
+        <div class="kpi-item">
+          <div class="kpi-label">根拠文献データベース</div>
+          <div class="kpi-value teal">146件</div>
+          <div class="kpi-sub">メタ分析・システマティックレビュー・大規模RCT等</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">評価対象の介入手法</div>
+          <div class="kpi-value">10分類</div>
+          <div class="kpi-sub">仮説検証・A/B・運動・瞑想・AI・睡眠等</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">注意・効果否定の介入</div>
+          <div class="kpi-value vermilion">3項目</div>
+          <div class="kpi-sub">根拠なし・限定的・均質化リスクを明示</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">個人開発 推奨実践</div>
+          <div class="kpi-value ochre">Top 5</div>
+          <div class="kpi-sub">実用性・市場適合・収益化への直結度で評価</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1 -->
+    <section id="sec-distinction" class="report-section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>「アイデアの量（発散）」と「実用的・収益的価値（収束・検証）」の区別</h2>
+      </div>
+      <p class="section-intro">
+        創造性研究において、<strong>アイデアの量・流暢性（Fluency）の向上</strong>と、<strong>商業的に成立し課題を解決するアイデアの選定・検証能力（Appropriateness / Viability）</strong>は明確に区別されます。
+      </p>
+
+      <div class="contrast-grid">
+        <article class="contrast-card limit">
+          <span class="card-kicker">Limitation · Divergent Tests</span>
+          <h3>心理学的テスト（AUT・TTCT等）の限界</h3>
+          <p>
+            単語の用途を多く挙げる「発散的思考テスト」でスコアが向上しても、それがそのまま市場受容性や収益性につながるわけではありません。被験者は独創的なアイデアよりも実現容易で無難なアイデアを選びがちであり、アイデアの量と質の間には選定のトレードオフが存在します。
+          </p>
+        </article>
+
+        <article class="contrast-card practical">
+          <span class="card-kicker">Practical Outcome · Market Viability</span>
+          <h3>実務的成果の指標</h3>
+          <p>
+            実際のアプリ企画や個人開発において真に有効なのは、単なる思いつきの数ではなく、<strong>科学的仮説検証（Scientific Approach）、A/Bテストによるフィードバック受容、リードユーザー（極端なニーズを持つ先行層）からの要件抽出</strong>など、市場の偽陽性（当たらない企画への固執）を排除し、迅速に軌道修正（ピボット）を行う能力です。
+          </p>
+        </article>
+      </div>
+
+      <div class="concept-flow" aria-label="発散から実務的検証への構造図">
+        <div class="flow-node">
+          <div class="flow-title">アイデアの量・流暢性（Fluency）</div>
+          <div class="flow-desc">発散的思考テスト（AUT・TTCT等）で測られる思いつきの多さ。市場受容性・収益性とは直結しない。</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-node gap">
+          <div class="flow-title">選定のトレードオフ</div>
+          <div class="flow-desc">人は独創案よりも実現容易で無難な案を選びがちであり、量と質の間にギャップが生じる。</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-node highlight">
+          <div class="flow-title">実用的・収益的価値（Appropriateness / Viability）</div>
+          <div class="flow-desc">科学的仮説検証・A/Bテスト・リードユーザー探索により、偽陽性を排除して迅速にピボットする能力。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="sec-table" class="report-section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>介入手法の一覧比較表</h2>
+      </div>
+
+      <!-- Visual Effect Size Reference (strictly mapped from reported standardized effect sizes) -->
+      <div class="chart-panel" aria-label="報告された標準化効果量の比較グラフ">
+        <div class="chart-header">
+          <h3>報告された標準化効果量（<span class="stat"><i>d</i></span> / <span class="stat"><i>g</i></span> / <span class="stat">SD</span>）の比較一覧</h3>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--teal-mid);"></span>発散・品質・創造性の向上</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--ochre-mid);"></span>バイアス調整後／記憶定着</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: #94A3B8;"></span>有意差なし</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--vermilion-mid);"></span>負の効果（均質化）</span>
+          </div>
+        </div>
+
+        <div class="effect-chart">
+          <!-- Scale: -1.0 to +1.3 (span 2.3). Zero at 43.48%. 1.0 unit = 43.478% -->
+          <div class="effect-row">
+            <div class="effect-label">屋外ウォーキング（発散的思考）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 51.74%;"></span></div>
+            <div class="effect-val">d = 1.19</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">ウォーキング全般（発散／RCT限定 0.82）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 40.43%;"></span></div>
+            <div class="effect-val">d = 0.93</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">屋内ウォーキング（発散的思考）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 40.00%;"></span></div>
+            <div class="effect-val">d = 0.92</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">習慣的（慢性的）身体活動（発散）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 38.70%;"></span></div>
+            <div class="effect-val">g = 0.89</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">マインドフルネス（中期間：20分〜1週）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 23.91%;"></span></div>
+            <div class="effect-val">d = 0.55</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">マインドフルネス（対照群あり／前後 0.59）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 18.26%;"></span></div>
+            <div class="effect-val">d = 0.42</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">急性身体活動（発散的思考）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 16.09%;"></span></div>
+            <div class="effect-val">g = 0.37</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">創造性訓練（バイアス調整後／未調整 0.53）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-mid" style="left: 43.48%; width: 13.48%;"></span></div>
+            <div class="effect-val">0.29〜0.32 SD</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">生成AI協調（個人の創造性・品質）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-pos" style="left: 43.48%; width: 11.74%;"></span></div>
+            <div class="effect-val">g = 0.27</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">睡眠中TMR（記憶定着・調整後／調整前 0.29）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-mid" style="left: 43.48%; width: 7.83%;"></span></div>
+            <div class="effect-val">g = 0.18</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">ウォーキング（収束的思考・有意差なし）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-null" style="left: 43.48%; width: 6.96%;"></span></div>
+            <div class="effect-val null">d = 0.16 (有意差なし)</div>
+          </div>
+          <div class="effect-row">
+            <div class="effect-label">生成AI協調（全体の多様性・均質化）</div>
+            <div class="effect-track"><span class="zero-line"></span><span class="effect-bar bar-neg" style="left: 6.09%; width: 37.39%;"></span></div>
+            <div class="effect-val neg">g = -0.86</div>
+          </div>
+          <div class="effect-axis" aria-hidden="true">
+            <div></div>
+            <div class="axis-ticks">
+              <span style="left: 0%; transform: none;">−1.0</span>
+              <span style="left: 21.74%;">−0.5</span>
+              <span style="left: 43.48%; color: var(--ink-primary); font-weight: 600;">0</span>
+              <span style="left: 65.22%;">+0.5</span>
+              <span style="left: 86.96%;">+1.0</span>
+            </div>
+            <div></div>
+          </div>
+        </div>
+
+        <p class="chart-footnote">
+          ※本グラフは下記比較表で標準化効果量（<i>d</i> / <i>g</i> / SD）が明示されている指標を視覚化したものです。事業成果指標で評価される介入（科学的意思決定法、A/Bテスト導入［企業業績30%〜100%向上］、リードユーザー探索［年間売上予測8倍以上・1億4,600万ドル］）および客観的効果なしの介入（マイクロドージング）を含む全10手法の詳細は以下の比較表を参照してください。
+        </p>
+      </div>
+
+      <!-- Interactive Filter Toolbar -->
+      <div class="table-toolbar" aria-label="比較表フィルタ">
+        <div class="filter-pills" role="group" aria-label="科学的根拠の強さで絞り込み">
+          <button type="button" class="filter-btn active" data-filter="all">すべて表示 (10)</button>
+          <button type="button" class="filter-btn" data-filter="high">極めて強固・強固 (3)</button>
+          <button type="button" class="filter-btn" data-filter="medium">中〜強・中 (5)</button>
+          <button type="button" class="filter-btn" data-filter="low">限定的・効果なし (2)</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label class="search-box" aria-label="表内キーワード検索">
+            <span aria-hidden="true" style="color:var(--ink-muted); font-size:0.85rem;">⌕</span>
+            <input id="tableSearch" type="search" placeholder="表内検索（例：AI、歩行、RCT）" />
+          </label>
+          <span id="tableCount" class="table-count">10 / 10 件表示</span>
+        </div>
+      </div>
+
+      <!-- Full 10-Row Comparison Table -->
+      <div class="table-wrap">
+        <table class="evidence-table" id="evidenceTable">
+          <thead>
+            <tr>
+              <th>介入分類</th>
+              <th>介入方法（具体的内容）</th>
+              <th>改善効果（効果量・統計的有意性）</th>
+              <th>科学的根拠の強さ（研究デザイン）</th>
+              <th>効果が確認された対象・期間</th>
+              <th>アプリ企画・個人開発への応用方法</th>
+              <th>主な根拠論文（出典）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr data-tier="high">
+              <td>科学的意思決定法（仮説検証アプローチ）</td>
+              <td class="col-method">ビジネスモデルの前提を科学的仮説として定式化し、市場データで厳密に検証するフレームワーク</td>
+              <td class="col-effect"><strong>売上向上、偽陽性追求の減少、有意なピボット率向上、不確実なアイデアの迅速な打ち切り</strong></td>
+              <td class="col-strength">
+                <span class="badge badge-top">極めて強固</span>
+                <span class="badge-detail">大規模RCTの反復検証</span>
+              </td>
+              <td class="col-sample">創業期スタートアップ759社（2024年）・116社（2020年）、約1年間</td>
+              <td class="col-apply">企画段階で「誰が・なぜ使うか」を検証可能な仮説（KPI・基準値）に落とし込み、初期プロトタイプやインタビューで仮説を厳密検証し、ダメな企画は即座に撤退・ピボットする。</td>
+              <td class="col-cite">Camuffo et al. (2020, 2024)</td>
+            </tr>
+
+            <!-- Row 2 -->
+            <tr data-tier="high">
+              <td>デジタル実験（A/Bテスト導入）</td>
+              <td class="col-method">施策や機能をA/Bテストを用いてデータ駆動で検証する体制の構築</td>
+              <td class="col-effect"><strong>導入1年後に企業業績が30%〜100%向上</strong>（有意）、迅速な失敗と有望なアイデアの特定</td>
+              <td class="col-strength">
+                <span class="badge badge-strong">強固</span>
+                <span class="badge-detail">差分の差分法 / 準実験</span>
+              </td>
+              <td class="col-sample">ハイテクスタートアップ多数、1年間の追跡</td>
+              <td class="col-apply">アプリのLPやコア機能について、直感ではなくA/Bテストを組み込んで数値計測し、ユーザーの実際の行動ログに基づいて仕様を改善・選定する。</td>
+              <td class="col-cite">Koning, Hasan &amp; Chatterji (2022)</td>
+            </tr>
+
+            <!-- Row 3 -->
+            <tr data-tier="high">
+              <td>リードユーザー・共創的探索</td>
+              <td class="col-method">最先端の課題に直面している極端なユーザー（リードユーザー）からニーズと解決策を収集</td>
+              <td class="col-effect"><strong>5年後の年間売上予測が従来手法の8倍以上</strong>（1億4,600万ドル vs 従来手法）、大ヒット製品ラインの創出</td>
+              <td class="col-strength">
+                <span class="badge badge-strong">強固</span>
+                <span class="badge-detail">企業内自然実験・実務評価</span>
+              </td>
+              <td class="col-sample">3M社の新製品開発プロジェクト群、5年間追跡</td>
+              <td class="col-apply">一般ユーザーへの漠然としたアンケートではなく、当該領域で自作ツールや独自ワークフローを既に作っているコア層（パワーユーザー）を観察・対話し、先行する痛点を発掘する。</td>
+              <td class="col-cite">Lilien et al. (2002)</td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr data-tier="medium">
+              <td>有酸素運動（ウォーキング）</td>
+              <td class="col-method">屋内トレッドミルまたは屋外での自由歩行（2分〜16週間）</td>
+              <td class="col-effect">
+                <strong>発散的思考（新規アイデア創出）に大きな効果</strong>（<span class="stat stat-pos"><i>d</i> = 0.93</span> [95% CI: 0.44, 1.42]、RCT限定でも <span class="stat stat-pos"><i>d</i> = 0.82</span>）。
+                ただし<strong>収束的思考には有意な効果なし</strong>（<span class="stat"><i>d</i> = 0.16</span> [95% CI: -0.31, 0.63]）。
+                屋外の方がやや効果大（<span class="stat stat-pos"><i>d</i> = 1.19</span> vs 屋内 <span class="stat stat-pos">0.92</span>）。
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-midstrong">中〜強</span>
+                <span class="badge-detail">最新メタ分析・GRADE評価・RCT多数</span>
+              </td>
+              <td class="col-sample">成人・大学生1,039名（23研究）、即時（単回2〜20分）〜長期（16週）</td>
+              <td class="col-apply">ブレインストーミングや機能出し（発散フェーズ）の直前・実施中に散歩を取り入れる。ただし、仕様決定やバグ修正、絞り込み（収束フェーズ）には歩行の効果は期待できないため座って行う。</td>
+              <td class="col-cite">Thabane et al. (2026), Oppezzo &amp; Schwartz (2014)</td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr data-tier="medium">
+              <td>習慣的・急性の身体活動全般</td>
+              <td class="col-method">ランニング、サイクリング、有酸素運動などの中〜高強度運動</td>
+              <td class="col-effect">
+                <strong>発散的思考の向上</strong>：急性運動で <span class="stat stat-pos"><i>g</i> = 0.37</span>、習慣的（慢性的）運動で <span class="stat stat-pos"><i>g</i> = 0.89</span>（<span class="stat"><i>p</i> &lt; 0.001</span>）
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-midstrong">中〜強</span>
+                <span class="badge-detail">マルチレベル・メタ分析</span>
+              </td>
+              <td class="col-sample">成人・児童含む35研究（介入28件、横断7件）</td>
+              <td class="col-apply">日常的な運動習慣（ランニングやジム）を維持しつつ、企画の壁にぶつかったら15〜20分程度の軽い有酸素運動（自転車・ジョギング）を挟んでから再考する。</td>
+              <td class="col-cite">Rominger et al. (2022)</td>
+            </tr>
+
+            <!-- Row 6 -->
+            <tr data-tier="medium">
+              <td>マインドフルネス瞑想</td>
+              <td class="col-method">呼吸法、ボディスキャン、現在への気づき（FA: 集中 / OM: 開放）</td>
+              <td class="col-effect">
+                <strong>創造性スコアの有意な改善</strong>（対照群あり <span class="stat stat-pos"><i>d</i> = 0.42</span>、前後比較 <span class="stat stat-pos"><i>d</i> = 0.59</span>）。
+                <strong>発散的思考よりも収束的思考（洞察問題・課題解決）に有利</strong>。
+                中期間（20分〜1週間）が最も効果量大（<span class="stat stat-pos"><i>d</i> = 0.55</span>）。
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-mid">中</span>
+                <span class="badge-detail">メタ分析、ただし出版バイアスや対照群の質にばらつきあり</span>
+              </td>
+              <td class="col-sample">成人・学生1,036名（20研究）、単回5分〜8週間</td>
+              <td class="col-apply">企画のロジック構築、競合分析、複数アイデアから1つに絞り込む収束・意思決定フェーズの前に、10〜20分の呼吸集中瞑想を行う。</td>
+              <td class="col-cite">Hughes et al. (2023)</td>
+            </tr>
+
+            <!-- Row 7 -->
+            <tr data-tier="medium">
+              <td>創造性訓練プログラム</td>
+              <td class="col-method">発想法・問題解決スキルトレーニング（CPS、思考法指導）</td>
+              <td class="col-effect">
+                未調整では <span class="stat">0.53 SD</span> だが、<strong>出版バイアス調整後は <span class="stat stat-warn">0.29 〜 0.32 SD</span>（小〜中程度）に低下</strong>
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-mid">中</span>
+                <span class="badge-detail">50年間のメタ分析、出版バイアス顕著</span>
+              </td>
+              <td class="col-sample">169研究（成人・学生等、844効果量）</td>
+              <td class="col-apply">SCAMPERや形態素分析などの体系的フレームワークを学習・適用する。ただし劇的な創造性向上を過信せず、思考のチェックリストとして活用する。</td>
+              <td class="col-cite">Sio &amp; Lortie-Forgues (2024)</td>
+            </tr>
+
+            <!-- Row 8 -->
+            <tr data-tier="medium">
+              <td>生成AIとの協調（Human-AI Collaboration）</td>
+              <td class="col-method">LLM（ChatGPT等）を活用したプロンプトによるアイデア出し・壁打ち</td>
+              <td class="col-effect">
+                <strong>個人の創造性・アイデア品質は向上</strong>（<span class="stat stat-pos"><i>g</i> = 0.27</span>、トップ10%に入る確率は人間の7倍）。
+                しかし<strong>全体の多様性は劇的に低下（均質化：<span class="stat stat-neg"><i>g</i> = -0.86</span>）</strong>
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-midstrong">中〜強</span>
+                <span class="badge-detail">メタ分析・実験室実験</span>
+              </td>
+              <td class="col-sample">28研究（8,214名）、単回セッション</td>
+              <td class="col-apply">単一の標準プロンプトでアイデアを求めると市場で他者と完全に被るため、<strong>「複数の異なるペルソナ（専門家・極端なユーザー視点）の指定」「異分野アナロジーの制約付与」「複数ベンダーモデルの併用」</strong>を行い均質化を回避する。</td>
+              <td class="col-cite">Holzner et al. (2025), Terwiesch et al. (2026), Wan et al. (2025/2026)</td>
+            </tr>
+
+            <!-- Row 9 -->
+            <tr data-tier="low">
+              <td>睡眠・インキュベーション（TMR含む）</td>
+              <td class="col-method">課題に取り組んだ後に睡眠を挟む／睡眠中に学習刺激の音・香りを再提示（TMR）</td>
+              <td class="col-effect">
+                睡眠中TMRは記憶定着を促進（<span class="stat stat-warn"><i>g</i> = 0.29</span>、バイアス調整後 <span class="stat stat-warn"><i>g</i> = 0.18</span>）。
+                ただし<strong>古典的洞察問題のひらめき自体を睡眠が直接生み出す証拠は乏しい（否定的なRCTあり）</strong>
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-limited">限定的〜疑問</span>
+                <span class="badge-detail">記憶強化のメタ分析はあるが創造的洞察は不確実</span>
+              </td>
+              <td class="col-sample">成人2,004名（91実験）</td>
+              <td class="col-apply">複雑なドメイン知識やAPI仕様の学習後の定着には睡眠（昼寝含む）が有用だが、「寝れば画期的なアプリのアイデアが勝手に閃く」という期待は科学的根拠が乏しい。</td>
+              <td class="col-cite">Hu et al. (2020), Schönauer et al. (2018)</td>
+            </tr>
+
+            <!-- Row 10 -->
+            <tr data-tier="low" class="row-caution">
+              <td>サイケデリクス・マイクロドージング</td>
+              <td class="col-method">シロシビンやLSDの超低用量（知覚下）反復摂取</td>
+              <td class="col-effect">
+                <strong>主観的な高揚感はあるが、客観的な創造性・認知機能テストでの有意な改善効果なし</strong>（二重盲検および自己盲検プラセボ対照研究でプラセボ効果であることが判明）
+              </td>
+              <td class="col-strength">
+                <span class="badge badge-none">効果なし</span>
+                <span class="badge-detail">高品質RCT・メタ分析で効果否定</span>
+              </td>
+              <td class="col-sample">健康成人191名（自己盲検）・34名（二重盲検RCT）等</td>
+              <td class="col-apply"><strong>科学的根拠なし</strong>。巷で語られる「創造性が高まる」という体験談は、期待（プラセボ効果）や盲検解除による思い込みである。</td>
+              <td class="col-cite">Meshkat et al. (2026), Szigeti et al. (2021), Cavanna et al. (2022)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="sec-unproven" class="report-section">
+      <div class="section-head caution">
+        <span class="section-num">03</span>
+        <h2>効果が不明確または証明されていない介入の明示</h2>
+      </div>
+      <p class="section-intro">
+        科学的検証の結果、<strong>「世間で創造性に効くと言われているが、実際には効果が不明確・または否定されている」</strong>介入は以下の通りです。個人開発者が時間を投資する際には注意が必要です。
+      </p>
+
+      <div class="caution-grid">
+        <article class="caution-card">
+          <span class="caution-tag">CAUTION 01 · 効果否定（プラセボ効果）</span>
+          <h3>1. サイケデリクスのマイクロドージング（シロシビン・LSD等）</h3>
+          <p>
+            <strong>エビデンス：</strong>観察研究や体験談では創造性向上を訴える声が多いものの、二重盲検RCTや大規模な自己盲検プラセボ対照研究（Szigeti et al., 2021; Cavanna et al., 2022）およびメタ分析（Meshkat et al., 2026）において、<strong>客観的な創造性指標（AUTやRAT）、認知機能テストでの改善は一切認められていません</strong>。参加者が「マイクロドーズを飲んだ」と主観的に推測したことによるプラセボ効果であることが立証されています。
+          </p>
+        </article>
+
+        <article class="caution-card">
+          <span class="caution-tag">CAUTION 02 · 創造的洞察の根拠乏しい</span>
+          <h3>2. 「寝れば独創的なアイデアが閃く」という単純な睡眠効果</h3>
+          <p>
+            <strong>エビデンス：</strong>睡眠が既知の記憶を固定化・整理することについては強固なメタ分析エビデンスが存在します（<span class="stat stat-warn"><i>g</i> = 0.18 〜 0.29</span>）。しかし、問題表現の根本的な再構成を必要とする古典的洞察課題やマジックのタスクにおいて、<strong>睡眠が覚醒状態と比較して解決率や「アハ体験」を向上させない</strong>とする厳密なRCTが存在します（Schönauer et al., 2018）。睡眠は記憶の強化（強化とスピード向上）をもたらしますが、無からアイデアを創出する万能の魔法ではありません。
+          </p>
+        </article>
+
+        <article class="caution-card">
+          <span class="caution-tag">CAUTION 03 · 均質化リスク</span>
+          <h3>3. 無防備な生成AIブレインストーミング</h3>
+          <p>
+            <strong>エビデンス：</strong>生成AIは個人単位のアイデア生成品質を引き上げますが（<span class="stat stat-pos"><i>g</i> = 0.27</span>）、集団レベル・市場レベルでは<strong>アイデアの多様性を著しく破壊（均質化：<span class="stat stat-neg"><i>g</i> = -0.86</span>）</strong>します。プロンプトやモデルを工夫せず漫然とAIにアイデアを出させると、「平均的で無難だが、他の開発者も全員思いついているアイデア」に収束してしまい、差別化が命であるアプリ開発では逆効果になるリスクがあります。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="sec-ranking" class="report-section">
+      <div class="section-head ranking">
+        <span class="section-num">04</span>
+        <h2>個人開発者が日常生活で実践できる推奨介入ランキング</h2>
+      </div>
+      <p class="section-intro">
+        エビデンスの強さ（メタ分析・反復検証された大規模RCTの有無）、および<strong>「単なるアイデア出しの数」にとどまらず「アプリとしての実用性・市場適合・収益化」に直結するかどうか</strong>を総合的に評価したランキングです。
+      </p>
+
+      <div class="ranking-list">
+
+        <!-- Rank 1 -->
+        <article class="rank-card rank-1">
+          <div class="rank-medal">
+            <span class="rank-emoji" aria-hidden="true">🥇</span>
+            <span class="rank-num-label">Rank 01</span>
+          </div>
+          <div class="rank-body">
+            <h3>第1位：科学的アプローチによる仮説検証プロセスの導入（思考法・行動様式）</h3>
+            <div class="rank-meta">
+              <div class="meta-box">
+                <div class="meta-box-title">エビデンスレベル</div>
+                <strong>最上位</strong>（759社および116社を対象とした複数の大規模RCTで反復実証）
+              </div>
+              <div class="meta-box">
+                <div class="meta-box-title">期待できる効果</div>
+                偽陽性（ユーザーがつかない無駄な開発）への固執を減らし、客観的データに基づいて早期にピボット・撤退を行い、結果的に売上と成長率を有意に高める。
+              </div>
+            </div>
+            <div class="actions-box">
+              <div class="actions-title">個人開発者の日常アクション</div>
+              <ol class="actions-list">
+                <li>アプリの企画時に「このアプリは便利だ」という直感を信じ切るのではなく、<strong>「どのような課題を持つ人が、既存の何をやめてこのアプリにお金を払うか」を明示的な科学的仮説</strong>として書き出す。</li>
+                <li>コードを書き始める前に、ランディングページ（LP）やSNS、プロトタイプを用いて定量的な基準値（例：「事前登録率15%以上」など）を設定したテストを行い、反証されたら潔く企画をピボット（方針転換）する。</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rank 2 -->
+        <article class="rank-card rank-2">
+          <div class="rank-medal">
+            <span class="rank-emoji" aria-hidden="true">🥈</span>
+            <span class="rank-num-label">Rank 02</span>
+          </div>
+          <div class="rank-body">
+            <h3>第2位：リードユーザー（極端な先行課題層）への観察と共創（要件定義）</h3>
+            <div class="rank-meta">
+              <div class="meta-box">
+                <div class="meta-box-title">エビデンスレベル</div>
+                <strong>極めて強固</strong>（3M社の製品開発5年間追跡調査・経営科学分野の検証）
+              </div>
+              <div class="meta-box">
+                <div class="meta-box-title">期待できる効果</div>
+                平均的なユーザーから得られるアイデアに比べ、<strong>市場売上・波及効果が8倍以上</strong>となる革新的プロダクトラインの創出につながる。
+              </div>
+            </div>
+            <div class="actions-box">
+              <div class="actions-title">個人開発者の日常アクション</div>
+              <ol class="actions-list">
+                <li>一般的な知人や不特定多数に「こんなアプリどう？」と聞くのをやめる。</li>
+                <li>既存のツールをハックして無理やりスプレッドシートやマクロで独自運用しているような、<strong>「切実すぎて自分で解決策を自作しているヘビーユーザー（リードユーザー）」</strong>を探し出し、彼らのワークフローの不満と工夫を徹底的に調査してアプリ化する。</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rank 3 -->
+        <article class="rank-card rank-3">
+          <div class="rank-medal">
+            <span class="rank-emoji" aria-hidden="true">🥉</span>
+            <span class="rank-num-label">Rank 03</span>
+          </div>
+          <div class="rank-body">
+            <h3>第3位：多様性を担保した生成AI（LLM）の協調利用（AI活用）</h3>
+            <div class="rank-meta">
+              <div class="meta-box">
+                <div class="meta-box-title">エビデンスレベル</div>
+                <strong>強固</strong>（8,200名超のメタ分析および製品アイデアRCT）
+              </div>
+              <div class="meta-box">
+                <div class="meta-box-title">期待できる効果</div>
+                アイデアの平均品質向上（<span class="stat stat-pos"><i>g</i> = 0.27</span>）、上位10%の有望アイデア出現率が7倍に向上。
+              </div>
+            </div>
+            <div class="actions-box">
+              <div class="actions-title">個人開発者の日常アクション</div>
+              <ol class="actions-list">
+                <li>「〇〇のアプリのアイデアを出して」という汎用プロンプトは均質化（<span class="stat stat-neg"><i>g</i> = -0.86</span>）を招くため絶対に使わない。</li>
+                <li><strong>AIペルソナ分割法</strong>：「辛口なセキュリティ監査役」「極度の面倒くさがりなユーザー」「異分野（農業や物流）の業務専門家」など、全く異なる前提条件とペルソナを与えてアイデアを出させ、それらを組み合わせる。</li>
+                <li>複数の異なるAIモデル（GPT-4、Claude等）を併用して回答の重複を排除する。</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rank 4 -->
+        <article class="rank-card rank-4">
+          <div class="rank-medal">
+            <span class="rank-emoji" aria-hidden="true">🏅</span>
+            <span class="rank-num-label">Rank 04</span>
+          </div>
+          <div class="rank-body">
+            <h3>第4位：発散フェーズ直前のウォーキング・日常的な運動習慣（身体活動）</h3>
+            <div class="rank-meta">
+              <div class="meta-box">
+                <div class="meta-box-title">エビデンスレベル</div>
+                <strong>強固</strong>（最新メタ分析：歩行 <span class="stat stat-pos"><i>d</i> = 0.93</span>、急性運動 <span class="stat stat-pos"><i>g</i> = 0.37</span>、慢性運動 <span class="stat stat-pos"><i>g</i> = 0.89</span>）
+              </div>
+              <div class="meta-box">
+                <div class="meta-box-title">期待できる効果</div>
+                アイデアの新規性・流暢性（発散的思考）の大幅な向上。
+              </div>
+            </div>
+            <div class="actions-box">
+              <div class="actions-title">個人開発者の日常アクション</div>
+              <ol class="actions-list">
+                <li>新規機能のブレインストーミングや企画の初期構想を練る際は、<strong>机に座らずに10〜20分程度の散歩（できれば屋外・自然環境）をしながら音声入力やメモで行う</strong>。</li>
+                <li>仕様の決定やバグ取り、絞り込み作業（収束的思考）には歩行の効果がないため、散歩から戻った後にデスクで冷静に選別を行う。</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rank 5 -->
+        <article class="rank-card rank-5">
+          <div class="rank-medal">
+            <span class="rank-emoji" aria-hidden="true">🏅</span>
+            <span class="rank-num-label">Rank 05</span>
+          </div>
+          <div class="rank-body">
+            <h3>第5位：収束・絞り込みフェーズにおける短期マインドフルネス（思考法・メンタル管理）</h3>
+            <div class="rank-meta">
+              <div class="meta-box">
+                <div class="meta-box-title">エビデンスレベル</div>
+                <strong>中等度</strong>（対照群付きメタ分析 <span class="stat stat-pos"><i>d</i> = 0.42</span>、収束的思考に対して特に有効）
+              </div>
+              <div class="meta-box">
+                <div class="meta-box-title">期待できる効果</div>
+                散漫になった注意力を回復させ、ワーキングメモリを確保して、複数の候補の中から最適な解決策を論理的に選定する能力（収束的思考）を高める。
+              </div>
+            </div>
+            <div class="actions-box">
+              <div class="actions-title">個人開発者の日常アクション</div>
+              <ol class="actions-list">
+                <li>発散させた大量の機能アイデアを仕様書に落とし込む前や、優先順位を決める前に、10〜15分間の呼吸集中瞑想（Focused Attention）を実施して認知的なノイズを低減させる。</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <footer class="report-footer">
+      <div>
+        アプリ企画力・アイデア創出力向上の科学的エビデンス調査（収録文献146件に基づく整理・評価レポート）
+      </div>
+      <button type="button" class="print-btn" onclick="window.print()">印刷 / PDF保存</button>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const searchInput = document.getElementById('tableSearch');
+      const rows = Array.from(document.querySelectorAll('#evidenceTable tbody tr'));
+      const countEl = document.getElementById('tableCount');
+      let currentFilter = 'all';
+
+      function applyFilters() {
+        const query = (searchInput.value || '').trim().toLowerCase();
+        let visible = 0;
+
+        rows.forEach((row) => {
+          const tier = row.getAttribute('data-tier');
+          const matchesTier = currentFilter === 'all' || tier === currentFilter;
+          const matchesQuery = !query || row.textContent.toLowerCase().includes(query);
+          const show = matchesTier && matchesQuery;
+          row.style.display = show ? '' : 'none';
+          if (show) visible += 1;
+        });
+
+        countEl.textContent = `${visible} / ${rows.length} 件表示`;
+      }
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      searchInput.addEventListener('input', applyFilters);
+
+      // Highlight active navigation link on scroll
+      const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+      const sections = navLinks
+        .map((a) => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = '#' + entry.target.id;
+                navLinks.forEach((link) => {
+                  link.classList.toggle('active', link.getAttribute('href') === id);
+                });
+              }
+            });
+          },
+          { rootMargin: '-25% 0px -65% 0px', threshold: 0 }
+        );
+        sections.forEach((sec) => observer.observe(sec));
+      }
+    })();
+  </script>
+</body>
+</html>
